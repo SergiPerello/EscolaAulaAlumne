@@ -4,8 +4,9 @@ public class School {
     private String name;
     private Classroom classroom;
 
-    public School(String name) {
+    public School(String name, int classRoomSize) {
         this.setName(name);
+        Classroom classroom = new Classroom(classRoomSize);
     }
 
     public String getName() {

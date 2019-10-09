@@ -3,9 +3,14 @@ package com.sergames;
 import java.util.Scanner;
 
 public class Controller {
-    public static String askUser() {
+    public static String askOptionToUser(String pattern) {
         Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
+        String answer = sc.nextLine();
+        if (!answer.matches(pattern)){
+            System.out.println(ViewTexts.InvalidInput);
+            answer = askOptionToUser(pattern);
+        }
+        return answer;
     }
 
     public static void menu(){
@@ -15,10 +20,10 @@ public class Controller {
                 "2- Mostra la info de tota l’escola\n"+
                 "Alumne:\n"+
                 "3- Donar alta alumne\n"+
-                "7- Fer progressar un alumne\n"+
-                "4- Mostrar tota la info d’un alumne\n"+
-                "5- Modificar les dades d’un alumne\n"+
-                "6- Dona de baixa alumne\n"
+                "4- Fer progressar un alumne\n"+
+                "5- Mostrar tota la info d’un alumne\n"+
+                "6- Modificar les dades d’un alumne\n"+
+                "7- Dona de baixa alumne\n"
         );
     }
 
@@ -26,7 +31,7 @@ public class Controller {
         String result = "";
         switch (option){
             case 1://Create school
-                createSchool("SchoolName");
+                createSchool("SchoolName", 40);
                 break;
             case 2://Read school
                 break;
@@ -41,12 +46,12 @@ public class Controller {
             case 7://Delete student
                 break;
             default:
-                result = "Not valid input!";
+                result = ViewTexts.InvalidInput;
                 break;
         }
     }
 
-    private void createSchool(String name) {
-        School school = new School(name);
+    private void createSchool(String name, int classRoomSize) {
+        School school = new School(name, classRoomSize);
     }
 }
