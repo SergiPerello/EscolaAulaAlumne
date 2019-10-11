@@ -4,9 +4,8 @@ public class School {
     private String name;
     private Classroom classroom;
 
-    public School(String name, int classRoomSize) {
+    public School(String name) {
         this.setName(name);
-        Classroom classroom = new Classroom(classRoomSize);
     }
 
     public String getName() {
@@ -16,4 +15,16 @@ public class School {
         this.name = name;
     }
 
+    public void createClassroom(int classroomSize){
+        classroom = new Classroom(classroomSize);
+    }
+
+
+    @Override
+    public String toString() {
+        return "School{" +
+                "name='" + name + '\'' +
+                ", classroom=" + classroom +
+                '}';
+    }
 }

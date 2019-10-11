@@ -1,9 +1,23 @@
 package com.sergames;
 
+import javax.swing.text.View;
 import java.util.Scanner;
 
 public class Controller {
-    public static String askOptionToUser(String pattern) {
+    String menuOptions = "[1-7]";
+    String maxClassroomSize = "[1-100]";
+    public void start(){
+        theSwitch(Integer.parseInt(askOptionToUser(menuOptions,ViewTexts.menu)));
+    }
+
+
+    public String askOptionToUser(String textToDisplay) {
+        System.out.println(textToDisplay);
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+    public String askOptionToUser(String pattern, String textToDisplay) {
+        System.out.println(textToDisplay);
         Scanner sc = new Scanner(System.in);
         String answer = sc.nextLine();
         if (!answer.matches(pattern)){
@@ -13,25 +27,12 @@ public class Controller {
         return answer;
     }
 
-    public static void menu(){
-        System.out.print("Options available:\n"+
-                "Escola:\n"+
-                "1- Donar d’alta una escola\n"+
-                "2- Mostra la info de tota l’escola\n"+
-                "Alumne:\n"+
-                "3- Donar alta alumne\n"+
-                "4- Fer progressar un alumne\n"+
-                "5- Mostrar tota la info d’un alumne\n"+
-                "6- Modificar les dades d’un alumne\n"+
-                "7- Dona de baixa alumne\n"
-        );
-    }
-
     public void theSwitch(int option) {
         String result = "";
         switch (option){
             case 1://Create school
-                createSchool("SchoolName", 40);
+                createSchool(askOptionToUser(ViewTexts.CreateSchoolName), Integer.parseInt(askOptionToUser(maxClassroomSize,ViewTexts.CreateClassroomSize));
+                result = ViewTexts.CreateSchoolSuccess;
                 break;
             case 2://Read school
                 break;
@@ -49,9 +50,12 @@ public class Controller {
                 result = ViewTexts.InvalidInput;
                 break;
         }
+        //return result;
     }
 
     private void createSchool(String name, int classRoomSize) {
-        School school = new School(name, classRoomSize);
+        School school = new School(name);
+        school.createClassroom(classRoomSize);
+        System.out.println(school.toString());
     }
 }
