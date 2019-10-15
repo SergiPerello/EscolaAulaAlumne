@@ -13,6 +13,7 @@ public class Classroom {
     public String toString() {
         return "Classroom{" +
                 "students=" + Arrays.toString(students) +
+                ", size=" + students.length +
                 '}';
     }
 }

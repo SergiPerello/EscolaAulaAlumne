@@ -22,9 +22,9 @@ public class School {
 
     @Override
     public String toString() {
-        return "School{" +
-                "name='" + name + '\'' +
-                ", classroom=" + classroom +
+        return "School:\n" +
+                "-Name: " + name + "\n" +
+                "-Classroom: " + classroom.toString() +
                 '}';
     }
 }

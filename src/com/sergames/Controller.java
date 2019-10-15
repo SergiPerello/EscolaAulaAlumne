@@ -1,13 +1,15 @@
 package com.sergames;
 
-import javax.swing.text.View;
 import java.util.Scanner;
+
+import static com.sergames.ViewTexts.*;
 
 public class Controller {
     String menuOptions = "[1-7]";
-    String maxClassroomSize = "[1-100]";
+    String maxClassroomSize = "[1-9]|[1-9][0-9]";
+    School school;
     public void start(){
-        theSwitch(Integer.parseInt(askOptionToUser(menuOptions,ViewTexts.menu)));
+        System.out.println(theSwitch(Integer.parseInt(askOptionToUser(menuOptions, menu))));
     }
 
 
@@ -19,22 +21,23 @@ public class Controller {
     public String askOptionToUser(String pattern, String textToDisplay) {
         System.out.println(textToDisplay);
         Scanner sc = new Scanner(System.in);
-        String answer = sc.nextLine();
+        String answer = sc.next();
         if (!answer.matches(pattern)){
-            System.out.println(ViewTexts.InvalidInput);
-            answer = askOptionToUser(pattern);
+            System.out.println(InvalidInput);
+            answer = askOptionToUser(pattern,textToDisplay);
         }
         return answer;
     }
 
-    public void theSwitch(int option) {
+    public String theSwitch(int option) {
         String result = "";
         switch (option){
             case 1://Create school
-                createSchool(askOptionToUser(ViewTexts.CreateSchoolName), Integer.parseInt(askOptionToUser(maxClassroomSize,ViewTexts.CreateClassroomSize));
-                result = ViewTexts.CreateSchoolSuccess;
+                school = createSchool(askOptionToUser(WriteSchoolName), Integer.parseInt(askOptionToUser(maxClassroomSize, WriteClassroomSize)));
+                result = SchoolCreateSuccessfully;
                 break;
             case 2://Read school
+                System.out.println(readSchool(this.school));
                 break;
             case 3://Create student
                 break;
@@ -46,16 +49,17 @@ public class Controller {
                 break;
             case 7://Delete student
                 break;
-            default:
-                result = ViewTexts.InvalidInput;
-                break;
         }
-        //return result;
+        return result;
     }
 
-    private void createSchool(String name, int classRoomSize) {
+    private School createSchool(String name, int classRoomSize) {
         School school = new School(name);
         school.createClassroom(classRoomSize);
-        System.out.println(school.toString());
+        return school;
+    }
+
+    private String readSchool(School school){
+        return school.toString();
     }
 }
