@@ -60,6 +60,11 @@ public class Controller {
     }
 
     private String readSchool(School school){
-        return school.toString();
+        String result;
+        if (school == null){
+            result = InvalidSchool;
+        }
+        result = school.toString();
+        return result;
     }
 }

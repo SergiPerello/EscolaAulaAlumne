@@ -12,6 +12,7 @@ public class ViewTexts {
             "6- Modificar les dades d’un alumne\n"+
             "7- Dona de baixa alumne\n";
     public static final String InvalidInput = "Not valid input!";
+    public static final String InvalidSchool = "School not created!";
     public static final String WriteSchoolName = "Write school name:";
     public static final String SchoolCreateSuccessfully = "School created Successfully!";
     public static final String WriteClassroomSize = "Write classroom size:";
