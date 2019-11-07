@@ -8,11 +8,11 @@ public class School {
         this.setName(name);
     }
 
-    public String getName() {
-        return name;
-    }
     public void setName(String name) {
         this.name = name;
+    }
+    public Classroom getClassroom() {
+        return classroom;
     }
 
     public void createClassroom(int classroomSize){

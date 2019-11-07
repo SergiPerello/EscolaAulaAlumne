@@ -5,13 +5,14 @@ import java.util.Scanner;
 import static com.sergames.ViewTexts.*;
 
 public class Controller {
+    School school;
     String menuOptions = "[1-7]";
     String maxClassroomSize = "[1-9]|[1-9][0-9]";
-    School school;
-    public void start(){
-        System.out.println(theSwitch(Integer.parseInt(askOptionToUser(menuOptions, menu))));
+    public boolean start(){
+        while(true) {
+            System.out.println(theSwitch(Integer.parseInt(askOptionToUser(menuOptions, menu))));
+        }
     }
-
 
     public String askOptionToUser(String textToDisplay) {
         System.out.println(textToDisplay);
@@ -40,10 +41,14 @@ public class Controller {
                 System.out.println(readSchool(this.school));
                 break;
             case 3://Create student
+                createStudent(askOptionToUser(WriteStudentName),askOptionToUser(WriteStudentEnrollment));
+                result = StudentCreateSuccessfully;
                 break;
             case 4://Study student
+                studyStudent(readStudent(askOptionToUser(WriteStudentName)),askOptionToUser(StudentAskStudy));
                 break;
             case 5://Read student
+                System.out.println(readStudent(WriteStudentName));
                 break;
             case 6://Update student
                 break;
@@ -60,11 +65,19 @@ public class Controller {
     }
 
     private String readSchool(School school){
-        String result;
-        if (school == null){
-            result = InvalidSchool;
-        }
-        result = school.toString();
+        String result = (school == null)?InvalidSchool:school.toString();
         return result;
+    }
+
+    private void createStudent(String name, String enrollment) {
+        school.getClassroom().addStudent(name, enrollment);
+    }
+
+    private void studyStudent(Student user, String value) {
+        user.study(Integer.parseInt(value));
+    }
+
+    private Student readStudent(String enrollment) {
+        return school.getClassroom().getStudent(enrollment);
     }
 }

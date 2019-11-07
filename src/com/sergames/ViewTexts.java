@@ -16,4 +16,8 @@ public class ViewTexts {
     public static final String WriteSchoolName = "Write school name:";
     public static final String SchoolCreateSuccessfully = "School created Successfully!";
     public static final String WriteClassroomSize = "Write classroom size:";
+    public static final String WriteStudentName = "Write student name:";
+    public static final String WriteStudentEnrollment = "Write student enrollment:";
+    public static final String StudentCreateSuccessfully = "Student created Successfully!";
+    public static final String StudentAskStudy = "How many study points you want to increase in the student:";
 }
