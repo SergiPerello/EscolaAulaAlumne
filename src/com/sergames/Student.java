@@ -27,6 +27,14 @@ public class Student {
     }
     public int getStudy() { return this.studyProgress; }
 
+    public void setEnrollment(String enrollment) {
+        this.enrollment = enrollment;
+    }
+
+    public void setStudyProgress(int studyProgress) {
+        this.studyProgress = studyProgress;
+    }
+
     @Override
     public String toString() {
         return "Student{" +

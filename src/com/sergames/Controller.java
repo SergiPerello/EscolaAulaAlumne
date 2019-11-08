@@ -9,6 +9,7 @@ public class Controller {
     String menuOptions = "[1-7]";
     String maxClassroomSize = "[1-9]|[1-9][0-9]";
     String maxStudyAmount = "[1-9]|10";
+    String updateStudentOptions = "[1-3]";
     public boolean start(){
         while(true) System.out.println(theSwitch(Integer.parseInt(askOptionToUser(menuOptions, menu))));
     }
@@ -51,9 +52,12 @@ public class Controller {
                 System.out.println(readStudent(askOptionToUser(WriteStudentEnrollment)));
                 break;
             case 6://Update student
-
+                updateStudent(readStudent(askOptionToUser(WriteStudentEnrollment)));
                 break;
             case 7://Delete student
+                deleteStudent(readStudent(askOptionToUser(WriteNewStudentEnrollment))){
+
+            }
                 break;
         }
         return result;
@@ -80,5 +84,20 @@ public class Controller {
 
     private Student readStudent(String enrollment) {
         return school.getClassroom().getStudent(enrollment);
+    }
+
+    private void updateStudent(Student student) {
+        switch (Integer.parseInt(askOptionToUser(updateStudentOptions,studentUpdateMenu))){
+            case 1:
+                student.setName(askOptionToUser(WriteNewStudentName));
+                break;
+            case 2:
+                student.setEnrollment(askOptionToUser(WriteNewStudentEnrollment));
+                break;
+            case 3:
+                student.setStudyProgress(Integer.parseInt(askOptionToUser(maxStudyAmount,WriteNewStudyProgress)));
+                break;
+
+        }
     }
 }
