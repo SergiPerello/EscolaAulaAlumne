@@ -12,12 +12,14 @@ public class Classroom {
     public void addStudent(String name, String enrollment){
         students[getLastPosition()]= new Student(name, enrollment);
     }
+
     public Student getStudent(String enrollment){
         int i=0;
         Student student = null;
         do{
             if(students[i].getEnrollment().equals(enrollment)) student = students[i];
-        }while(i<students.length);
+            i++;
+        }while(student == null && i<students.length);
         return student;
     }
 
@@ -28,11 +30,24 @@ public class Classroom {
         }
         return i;
     }
+
+    public void checkStudentsProgress(){
+        for (int i = 0;i<students.length;i++) {
+            if(students[i]!=null){
+                if (students[i].getStudy()>=10) {
+                    System.out.println(students[i].getName()+" has been removed due to hitting max study points(10)");
+                    students[i] = null;
+                }
+            }
+        }
+    }
     @Override
     public String toString() {
-        return "Classroom{" +
-                "students=" + Arrays.toString(students) +
-                ", size=" + students.length +
-                '}';
+        String result =  "Classroom{size=" + students.length +", students=[";
+        for (int i = 0;i<students.length;i++) {
+            if (students[i] == null) result += "null, ";
+            else result += students[i].toString();
+        }
+        return result;
     }
 }

@@ -13,18 +13,26 @@ public class Student {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getEnrollment() {
         return enrollment;
-    }
-    public void setEnrollment(String enrollment) {
-        this.enrollment = enrollment;
     }
 
     public void study(int value){
         this.studyProgress+=value;
     }
     public int getStudy() { return this.studyProgress; }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", enrollment='" + enrollment + '\'' +
+                ", studyProgress=" + studyProgress +
+                '}';
+    }
 }
