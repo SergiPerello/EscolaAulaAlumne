@@ -55,12 +55,14 @@ public class Controller {
                 updateStudent(readStudent(askOptionToUser(WriteStudentEnrollment)));
                 break;
             case 7://Delete student
-                deleteStudent(readStudent(askOptionToUser(WriteNewStudentEnrollment))){
-
-            }
+                deleteStudent(readStudent(askOptionToUser(WriteNewStudentEnrollment)));
                 break;
         }
         return result;
+    }
+
+    private void deleteStudent(Student readStudent) {
+
     }
 
     private School createSchool(String name, int classRoomSize) {
