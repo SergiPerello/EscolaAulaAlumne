@@ -1,9 +1,7 @@
 package com.sergames;
 
-import java.util.Arrays;
-
 public class Classroom {
-    Student[] students;
+    private Student[] students;
 
     public Classroom(int size) {
         students = new Student[size];
@@ -11,6 +9,17 @@ public class Classroom {
 
     public void addStudent(String name, String enrollment){
         students[getLastPosition()]= new Student(name, enrollment);
+    }
+
+    public void deleteStudent(String enrollment) {
+        for (int i = 0;i<students.length;i++) {
+            if(students[i]!=null){
+                if(students[i].getEnrollment().equals(enrollment)) {
+                    System.out.println(students[i].getName()+" has been removed");
+                    students[i] = null;
+                }
+            }
+        }
     }
 
     public Student getStudent(String enrollment){
@@ -23,7 +32,7 @@ public class Classroom {
         return student;
     }
 
-    public int getLastPosition(){
+    private int getLastPosition(){
         int i = 0;
         while (students[i]!=null){
             i++;
